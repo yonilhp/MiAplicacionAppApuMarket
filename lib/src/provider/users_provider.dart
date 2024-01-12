@@ -1,4 +1,5 @@
 import 'package:apu_market/src/environment/environment.dart';
+import 'package:apu_market/src/models/response_api.dart';
 import 'package:apu_market/src/models/user.dart';
 import 'package:get/get.dart';
 
@@ -14,5 +15,25 @@ class UsersProvider extends GetConnect {
       },
     );
     return response;
+  }
+
+  Future<ResponseApi> login(String email, String password) async {
+    Response response = await post(
+      '$url/login',
+      {'email': email, 'password': password},
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    );
+    print('RESPONSE Body: ${response.body}');
+    print('RESPONSE Status Code: ${response.statusCode}');
+
+    if (response.body == null) {
+      Get.snackbar('Error', 'No se pudo ejecutar la petición');
+      return ResponseApi();
+    }
+    ResponseApi responseApi = ResponseApi.fromJson(response.body);
+
+    return responseApi;
   }
 }
