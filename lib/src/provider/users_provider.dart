@@ -1,7 +1,9 @@
 import 'package:apu_market/src/environment/environment.dart';
-import 'package:apu_market/src/models/response_api.dart';
 import 'package:apu_market/src/models/user.dart';
 import 'package:get/get.dart';
+
+import '../environment/environment.dart';
+import '../models/user.dart';
 
 class UsersProvider extends GetConnect {
   String url = '${Enviroment.API_URL}api/users';
