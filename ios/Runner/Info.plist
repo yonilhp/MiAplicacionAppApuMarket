@@ -4,6 +4,12 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Necesito permisos para acceder a la galeris de fotos</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Necesito permisos para acceder a la camara</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Necesito permisos para acceder al micrófono del celular</string>
 	<key>CFBundleDisplayName</key>
 	<string>Apu Market</string>
 	<key>CFBundleExecutable</key>

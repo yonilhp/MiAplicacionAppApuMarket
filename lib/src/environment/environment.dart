@@ -1,3 +1,3 @@
 class Enviroment {
-  static const String API_URL = "http://192.168.255.156:3000/";
+  static const String API_URL = "http://192.168.146.156:3000/";
 }

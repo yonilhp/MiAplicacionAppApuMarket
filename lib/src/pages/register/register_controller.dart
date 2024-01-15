@@ -1,7 +1,9 @@
+import 'dart:io';
 import 'package:apu_market/src/models/user.dart';
 import 'package:apu_market/src/provider/users_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class RegisterController extends GetxController {
   TextEditingController emailController = TextEditingController();
@@ -12,6 +14,9 @@ class RegisterController extends GetxController {
   TextEditingController confirmPasswordController = TextEditingController();
 
   UsersProvider usersProvider = UsersProvider();
+
+  ImagePicker picker = ImagePicker();
+  File? imageFile;
 
   void register() async {
     String email = emailController.text.trim();
@@ -82,5 +87,46 @@ class RegisterController extends GetxController {
     }
 
     return true;
+  }
+
+  Future selectImage(ImageSource imageSource) async {
+    XFile? image = await picker.pickImage(source: imageSource);
+    if (image != null) {
+      imageFile = File(image.path);
+      update();
+    }
+  }
+
+  void showAlertDialog(BuildContext context) {
+    Widget galleryButton = ElevatedButton(
+      onPressed: () {
+        Get.back();
+        selectImage(ImageSource.gallery);
+      },
+      child: Text(
+        "GALERIA",
+        style: TextStyle(color: Colors.black),
+      ),
+    );
+    Widget cameraButton = ElevatedButton(
+      onPressed: () {
+        Get.back();
+        selectImage(ImageSource.camera);
+      },
+      child: Text(
+        "CAMARA",
+        style: TextStyle(color: Colors.black),
+      ),
+    );
+
+    AlertDialog alertDialog = AlertDialog(
+      title: Text("Selecciona una opción"),
+      actions: [galleryButton, cameraButton],
+    );
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alertDialog;
+        });
   }
 }
