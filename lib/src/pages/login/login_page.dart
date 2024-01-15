@@ -1,3 +1,4 @@
+import 'package:apu_market/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -31,13 +32,19 @@ class LoginPage extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: MediaQuery.of(context).size.height * 0.42,
-      color: Colors.amber,
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+        //begin: Alignment.topCenter,
+        begin: AlignmentDirectional.bottomCenter,
+        end: Alignment.bottomCenter,
+        colors: deliveryGradients,
+      )),
     );
   }
 
   Widget _textAppName() {
     return Text(
-      'APU MARKET',
+      'QORI MARKET',
       style: TextStyle(
           color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
     );

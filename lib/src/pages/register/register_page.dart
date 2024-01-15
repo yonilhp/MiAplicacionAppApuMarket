@@ -1,3 +1,4 @@
+import 'package:apu_market/main.dart';
 import 'package:apu_market/src/pages/register/register_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -40,7 +41,13 @@ class RegisterPage extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: MediaQuery.of(context).size.height * 0.35,
-      color: Colors.amber,
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+        //begin: Alignment.topCenter,
+        begin: AlignmentDirectional.bottomCenter,
+        end: Alignment.bottomCenter,
+        colors: deliveryGradients,
+      )),
     );
   }
 

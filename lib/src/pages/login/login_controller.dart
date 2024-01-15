@@ -2,6 +2,7 @@ import 'package:apu_market/src/models/response_api.dart';
 import 'package:apu_market/src/provider/users_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class LoginController extends GetxController {
   TextEditingController emailController = TextEditingController();
@@ -26,11 +27,21 @@ class LoginController extends GetxController {
       print('Response Api: ${responseApi.toJson()}');
 
       if (responseApi.success == true) {
-        Get.snackbar('Login exitoso', responseApi.message ?? '');
+        GetStorage().write(
+            'user',
+            responseApi
+                .data); // Ya estamos almacenando datos del usuario des sessión
+        //llamamos a la funcion goToHomePage
+        goToHomePage();
+        //Get.snackbar('Login exitoso', responseApi.message ?? '');
       } else {
-        Get.snackbar('Error', responseApi.message ?? '');
+        Get.snackbar('Login fallido', responseApi.message ?? '');
       }
     }
+  }
+
+  void goToHomePage() {
+    Get.toNamed('/home');
   }
 
   bool isValidForm(String email, String password) {

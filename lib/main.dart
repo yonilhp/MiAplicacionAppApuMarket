@@ -1,9 +1,16 @@
+import 'package:apu_market/src/models/user.dart';
+import 'package:apu_market/src/pages/home/home_page.dart';
 import 'package:apu_market/src/pages/login/login_page.dart';
 import 'package:apu_market/src/pages/register/register_page.dart';
+import 'package:apu_market/src/pages/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
-void main() {
+User userSession = User.fromJson(GetStorage().read('user') ?? {});
+
+void main() async {
+  await GetStorage.init();
   runApp(const MyApp());
 }
 
@@ -14,6 +21,27 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 }
 
+class DeliveryColors {
+  static final yellow = Color(0xffFDC054);
+  static final green = Color(0xff32B768);
+  static final orange = Color(0xffFFA500);
+  static final white = Color(0xffFFFFFF);
+  static final blue = Color(0xff0000FF);
+  //celeste
+  static final lightBlue = Color(0xff00FFFF);
+  // celeste medio azulino
+  static final mediumBlue = Color(0xff00BFFF);
+  //verde claro opaco
+  static final lightGreen = Color(0xff90EE90);
+  // anaranjado opaco
+  static final lightOrange = Color(0xffFFDAB9);
+}
+
+final deliveryGradients = [
+  DeliveryColors.lightBlue,
+  DeliveryColors.lightOrange
+];
+
 class _MyAppState extends State<MyApp> {
   @override
   void initState() {
@@ -23,13 +51,17 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    print('Usuario id: ${userSession.id}');
+
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Apu Market',
-      initialRoute: '/',
+      home: const SplashScreen(),
+      initialRoute: userSession.id != null ? '/home' : '/',
       getPages: [
         GetPage(name: '/', page: () => LoginPage()),
         GetPage(name: '/register', page: () => RegisterPage()),
+        GetPage(name: '/home', page: () => HomePage()),
       ],
       theme: ThemeData(
         primaryColor: Colors.amber,
