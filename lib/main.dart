@@ -66,10 +66,11 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primaryColor: Colors.amber,
         colorScheme: const ColorScheme(
-          primary: Colors.amber,
+          primary: Colors.lightBlue,
           secondary: Colors.amberAccent,
-          background: Colors.grey,
-          surface: Colors.grey,
+          background: Colors.white,
+          //surface: Color.fromARGB(255, 250, 237, 196),
+          surface: Color.fromARGB(255, 255, 248, 220),
           onSurface: Colors.grey,
           onSecondary: Colors.grey,
           onPrimary: Colors.grey,

@@ -1,13 +1,12 @@
-import 'package:apu_market/main.dart';
 import 'package:apu_market/src/pages/register/register_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 
 class RegisterPage extends StatelessWidget {
-  RegisterController con = Get.put(RegisterController());
+  final RegisterController con;
+
+  RegisterPage() : con = Get.put(RegisterController());
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +29,7 @@ class RegisterPage extends StatelessWidget {
           onPressed: () => Get.back(),
           icon: Icon(
             Icons.arrow_back_ios,
-            color: Colors.white,
+            color: Colors.black,
           ),
         ),
       ),
@@ -41,13 +40,7 @@ class RegisterPage extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: MediaQuery.of(context).size.height * 0.35,
-      decoration: BoxDecoration(
-          gradient: LinearGradient(
-        //begin: Alignment.topCenter,
-        begin: AlignmentDirectional.bottomCenter,
-        end: Alignment.bottomCenter,
-        colors: deliveryGradients,
-      )),
+      color: Color.fromARGB(255, 255, 248, 220),
     );
   }
 
@@ -183,6 +176,9 @@ class RegisterPage extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () => con.register(context),
         style: ElevatedButton.styleFrom(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30.0),
+              side: BorderSide(color: Colors.lightBlue, width: 2.0)),
           padding: EdgeInsets.symmetric(vertical: 15),
         ),
         child: Text(
@@ -217,6 +213,16 @@ class RegisterPage extends StatelessWidget {
                           as ImageProvider,
                   radius: 60,
                   backgroundColor: Colors.white,
+                  //color de borde
+                  // child: Container(
+                  //   decoration: BoxDecoration(
+                  //     shape: BoxShape.circle,
+                  //     border: Border.all(
+                  //       color: Colors.black,
+                  //       width: 2.0,
+                  //     ),
+                  //   ),
+                  // ),
                 ),
               ))),
     );

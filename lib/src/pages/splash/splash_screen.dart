@@ -28,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
             gradient: LinearGradient(
           //begin: Alignment.topCenter,
           begin: AlignmentDirectional.bottomCenter,
-          end: Alignment.bottomCenter,
+          end: Alignment.center,
           colors: deliveryGradients,
         )),
         child: Column(
@@ -69,8 +69,9 @@ class _SplashScreenState extends State<SplashScreen> {
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.displayMedium?.copyWith(
                     fontWeight: FontWeight.bold,
-                    color: Color(0xffFFA500),
-                    fontSize: 20,
+                    color: Colors.yellow,
+                    //color: Color(0xffFFDAB9),
+                    fontSize: 40,
                   ),
             ),
           ],

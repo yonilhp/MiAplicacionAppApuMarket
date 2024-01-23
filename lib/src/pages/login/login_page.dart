@@ -1,11 +1,12 @@
-import 'package:apu_market/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'login_controller.dart';
 
 class LoginPage extends StatelessWidget {
-  LoginController con = Get.put(LoginController());
+  final LoginController con;
+
+  LoginPage() : con = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {
@@ -32,13 +33,7 @@ class LoginPage extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: MediaQuery.of(context).size.height * 0.42,
-      decoration: BoxDecoration(
-          gradient: LinearGradient(
-        //begin: Alignment.topCenter,
-        begin: AlignmentDirectional.bottomCenter,
-        end: Alignment.bottomCenter,
-        colors: deliveryGradients,
-      )),
+      color: Color.fromARGB(255, 255, 248, 220),
     );
   }
 
@@ -120,6 +115,10 @@ class LoginPage extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () => con.login(),
         style: ElevatedButton.styleFrom(
+          // border para el boton
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30.0),
+              side: BorderSide(color: Colors.lightBlue, width: 2.0)),
           padding: EdgeInsets.symmetric(vertical: 15),
         ),
         child: Text(
@@ -156,7 +155,9 @@ class LoginPage extends StatelessWidget {
           child: Text(
             'Registrate Aquí',
             style: TextStyle(
-                color: Colors.blue, fontSize: 15, fontWeight: FontWeight.bold),
+                color: Colors.lightBlue,
+                fontSize: 15,
+                fontWeight: FontWeight.bold),
           ),
         )
       ],

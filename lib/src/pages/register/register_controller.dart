@@ -129,6 +129,12 @@ class RegisterController extends GetxController {
         Get.back();
         selectImage(ImageSource.gallery);
       },
+      //border para el boton
+      style: ElevatedButton.styleFrom(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30.0),
+            side: BorderSide(color: Colors.lightBlue, width: 2.0)),
+      ),
       child: Text(
         "GALERIA",
         style: TextStyle(color: Colors.black),
@@ -139,6 +145,11 @@ class RegisterController extends GetxController {
         Get.back();
         selectImage(ImageSource.camera);
       },
+      style: ElevatedButton.styleFrom(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30.0),
+            side: BorderSide(color: Colors.lightBlue, width: 2.0)),
+      ),
       child: Text(
         "CAMARA",
         style: TextStyle(color: Colors.black),
@@ -146,7 +157,10 @@ class RegisterController extends GetxController {
     );
 
     AlertDialog alertDialog = AlertDialog(
-      title: Text("Selecciona una opción"),
+      title: Text(
+        "Selecciona una opción",
+        style: TextStyle(color: Colors.black),
+      ),
       actions: [galleryButton, cameraButton],
     );
     showDialog(
