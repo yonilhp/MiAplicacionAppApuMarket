@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:apu_market/src/models/rol.dart';
+
 User userFromJson(String str) => User.fromJson(json.decode(str));
 
 String userToJson(User data) => json.encode(data.toJson());
@@ -17,17 +19,18 @@ class User {
   String? image;
   String? password;
   String? sessionToken;
+  List<Rol>? roles = [];
 
-  User({
-    this.id,
-    this.email,
-    this.name,
-    this.lastname,
-    this.phone,
-    this.image,
-    this.password,
-    this.sessionToken,
-  });
+  User(
+      {this.id,
+      this.email,
+      this.name,
+      this.lastname,
+      this.phone,
+      this.image,
+      this.password,
+      this.sessionToken,
+      this.roles});
 
   factory User.fromJson(Map<String, dynamic> json) => User(
         id: json["id"],
@@ -38,6 +41,9 @@ class User {
         image: json["image"],
         password: json["password"],
         sessionToken: json["session_token"],
+        roles: json["roles"] == null
+            ? []
+            : List<Rol>.from(json["roles"].map((model) => Rol.fromJson(model))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -49,5 +55,6 @@ class User {
         "image": image,
         "password": password,
         "session_token": sessionToken,
+        "roles": roles
       };
 }

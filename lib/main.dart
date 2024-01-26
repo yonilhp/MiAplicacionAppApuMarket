@@ -2,7 +2,8 @@ import 'package:apu_market/src/models/user.dart';
 import 'package:apu_market/src/pages/home/home_page.dart';
 import 'package:apu_market/src/pages/login/login_page.dart';
 import 'package:apu_market/src/pages/register/register_page.dart';
-import 'package:apu_market/src/pages/splash/splash_screen.dart';
+import 'package:apu_market/src/pages/roles/roles_page.dart';
+// import 'package:apu_market/src/pages/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -56,12 +57,13 @@ class _MyAppState extends State<MyApp> {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Apu Market',
-      home: const SplashScreen(),
+      // home: const SplashScreen(),
       initialRoute: userSession.id != null ? '/home' : '/',
       getPages: [
         GetPage(name: '/', page: () => LoginPage()),
         GetPage(name: '/register', page: () => RegisterPage()),
         GetPage(name: '/home', page: () => HomePage()),
+        GetPage(name: '/roles', page: () => RolesPage()),
       ],
       theme: ThemeData(
         primaryColor: Colors.amber,
