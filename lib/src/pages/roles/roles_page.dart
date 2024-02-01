@@ -30,21 +30,24 @@ class RolesPage extends StatelessWidget {
   }
 
   Widget _cardRol(Rol rol) {
-    return Column(children: [
-      Container(
-          margin: EdgeInsets.only(bottom: 15),
-          height: 100,
-          //Aqui obetenemos el link del imagen
-          child: FadeInImage(
-            image: NetworkImage(rol.image!),
-            fadeInDuration: Duration(milliseconds: 50),
-            placeholder: AssetImage("assets/img/no-image.png"),
-          )),
-      //separa imagenes
-      Text(
-        rol.name ?? '',
-        style: TextStyle(fontSize: 20, color: Colors.black),
-      )
-    ]);
+    return GestureDetector(
+      onTap: () => con.goToPageRol(rol),
+      child: Column(children: [
+        Container(
+            margin: EdgeInsets.only(bottom: 15),
+            height: 100,
+            //Aqui obetenemos el link del imagen
+            child: FadeInImage(
+              image: NetworkImage(rol.image!),
+              fadeInDuration: Duration(milliseconds: 50),
+              placeholder: AssetImage("assets/img/no-image.png"),
+            )),
+        //separa imagenes
+        Text(
+          rol.name ?? '',
+          style: TextStyle(fontSize: 20, color: Colors.black),
+        )
+      ]),
+    );
   }
 }

@@ -1,10 +1,13 @@
 import 'package:apu_market/src/models/response_api.dart';
+import 'package:apu_market/src/models/user.dart';
 import 'package:apu_market/src/provider/users_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class LoginController extends GetxController {
+  User user = User.fromJson(GetStorage().read('user') ?? {});
+
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -31,18 +34,21 @@ class LoginController extends GetxController {
             'user',
             responseApi
                 .data); // Ya estamos almacenando datos del usuario des sessión
-        //llamamos a la funcion goToHomePage
-        //goToHomePage();
-        goToRolesPage();
-        //Get.snackbar('Login exitoso', responseApi.message ?? '');
+        User myUser = User.fromJson(GetStorage().read('user') ?? {});
+
+        if (myUser.roles!.length > 1) {
+          goToRolesPage();
+        } else {
+          goToClientProductPage();
+        }
       } else {
         Get.snackbar('Login fallido', responseApi.message ?? '');
       }
     }
   }
 
-  void goToHomePage() {
-    Get.offNamedUntil('/home', (route) => false);
+  void goToClientProductPage() {
+    Get.offNamedUntil('/client/products/list', (route) => false);
   }
 
   void goToRolesPage() {

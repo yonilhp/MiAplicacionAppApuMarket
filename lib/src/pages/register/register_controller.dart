@@ -63,7 +63,7 @@ class RegisterController extends GetxController {
   }
 
   void goToHomePage() {
-    Get.offNamedUntil('/home', (route) => false);
+    Get.offNamedUntil('client/products/list', (route) => false);
   }
 
   bool isValidForm(String email, String name, String lastName, String phone,
