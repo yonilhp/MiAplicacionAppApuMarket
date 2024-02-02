@@ -25,14 +25,11 @@ class ClientProductsListPage extends StatelessWidget {
 
   Widget _bottomBar() {
     return Obx(() => CustomAnimatedBottomBar(
-          //color de bordes de barra
-
           containerHeight: 70,
-          backgroundColor: Colors.amber,
-          //color de bordes de bottomBar
-          // backgroundColor: Color.fromARGB(255, 255, 248, 220),
+          //backgroundColor: Color.fromARGB(235, 127, 151, 196),
+          backgroundColor: Color.fromARGB(235, 72, 184, 192),
           showElevation: true,
-          itemCornerRadius: 24,
+          itemCornerRadius: 20,
           curve: Curves.easeIn,
           selectedIndex: con.indexTab.value,
           onItemSelected: (index) => con.changeTab(index),
@@ -45,7 +42,7 @@ class ClientProductsListPage extends StatelessWidget {
             ),
             BottomNavyBarItem(
               icon: Icon(Icons.list),
-              title: Text('Mis pedidos'),
+              title: Text('Mis Pedidos'),
               activeColor: Colors.white,
               inactiveColor: Colors.black,
             ),

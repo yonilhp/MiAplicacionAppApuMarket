@@ -33,7 +33,7 @@ class LoginPage extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: MediaQuery.of(context).size.height * 0.42,
-      color: Color.fromARGB(255, 255, 248, 220),
+      color: Color.fromARGB(235, 72, 184, 192),
     );
   }
 
@@ -51,10 +51,10 @@ class LoginPage extends StatelessWidget {
       margin: EdgeInsets.only(
           top: MediaQuery.of(context).size.height * 0.35, left: 50, right: 50),
       decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.lightBlue, // Color del borde
-          width: 2.0, // Ancho del borde
-        ),
+        // border: Border.all(
+        //   color: Colors.lightBlue, // Color del borde
+        //   width: 2.0, // Ancho del borde
+        // ),
         borderRadius: BorderRadius.circular(20),
         color: Colors.white,
         boxShadow: <BoxShadow>[
@@ -117,8 +117,9 @@ class LoginPage extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           // border para el boton
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30.0),
-              side: BorderSide(color: Colors.lightBlue, width: 2.0)),
+            borderRadius: BorderRadius.circular(30.0),
+            // side: BorderSide(color: Colors.lightBlue, width: 2.0)
+          ),
           padding: EdgeInsets.symmetric(vertical: 15),
         ),
         child: Text(
@@ -155,7 +156,7 @@ class LoginPage extends StatelessWidget {
           child: Text(
             'Registrate Aquí',
             style: TextStyle(
-                color: Colors.lightBlue,
+                color: Color.fromARGB(235, 72, 184, 192),
                 fontSize: 15,
                 fontWeight: FontWeight.bold),
           ),

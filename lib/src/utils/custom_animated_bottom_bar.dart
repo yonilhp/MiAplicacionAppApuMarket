@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class CustomAnimatedBottomBar extends StatelessWidget {
-
   CustomAnimatedBottomBar({
     Key? key,
     this.selectedIndex = 0,
@@ -16,7 +15,7 @@ class CustomAnimatedBottomBar extends StatelessWidget {
     required this.items,
     required this.onItemSelected,
     this.curve = Curves.linear,
-  }) : assert(items.length >= 2 && items.length <= 5),
+  })  : assert(items.length >= 2 && items.length <= 5),
         super(key: key);
 
   final int selectedIndex;
@@ -95,7 +94,7 @@ class _ItemWidget extends StatelessWidget {
     required this.itemCornerRadius,
     required this.iconSize,
     this.curve = Curves.linear,
-  })  : super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -103,20 +102,20 @@ class _ItemWidget extends StatelessWidget {
       container: true,
       selected: isSelected,
       child: AnimatedContainer(
-        width: isSelected ? 130 : 50,
+        width: isSelected ? 150 : 50,
         height: double.maxFinite,
         duration: animationDuration,
         curve: curve,
         decoration: BoxDecoration(
           color:
-          isSelected ? item.activeColor.withOpacity(0.2) : backgroundColor,
+              isSelected ? item.activeColor.withOpacity(0.2) : backgroundColor,
           borderRadius: BorderRadius.circular(itemCornerRadius),
         ),
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           physics: NeverScrollableScrollPhysics(),
           child: Container(
-            width: isSelected ? 130 : 50,
+            width: isSelected ? 150 : 50,
             padding: EdgeInsets.symmetric(horizontal: 8),
             child: Row(
               mainAxisSize: MainAxisSize.max,
@@ -129,8 +128,8 @@ class _ItemWidget extends StatelessWidget {
                     color: isSelected
                         ? item.activeColor.withOpacity(1)
                         : item.inactiveColor == null
-                        ? item.activeColor
-                        : item.inactiveColor,
+                            ? item.activeColor
+                            : item.inactiveColor,
                   ),
                   child: item.icon,
                 ),
@@ -157,8 +156,8 @@ class _ItemWidget extends StatelessWidget {
     );
   }
 }
-class BottomNavyBarItem {
 
+class BottomNavyBarItem {
   BottomNavyBarItem({
     required this.icon,
     required this.title,
@@ -172,5 +171,4 @@ class BottomNavyBarItem {
   final Color activeColor;
   final Color? inactiveColor;
   final TextAlign? textAlign;
-
 }

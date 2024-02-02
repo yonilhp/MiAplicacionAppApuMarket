@@ -132,8 +132,9 @@ class RegisterController extends GetxController {
       //border para el boton
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30.0),
-            side: BorderSide(color: Colors.lightBlue, width: 2.0)),
+          borderRadius: BorderRadius.circular(30.0),
+          // side: BorderSide(color: Colors.lightBlue, width: 2.0)
+        ),
       ),
       child: Text(
         "GALERIA",
@@ -147,8 +148,9 @@ class RegisterController extends GetxController {
       },
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30.0),
-            side: BorderSide(color: Colors.lightBlue, width: 2.0)),
+          borderRadius: BorderRadius.circular(30.0),
+          // side: BorderSide(color: Colors.lightBlue, width: 2.0)
+        ),
       ),
       child: Text(
         "CAMARA",
