@@ -13,8 +13,25 @@ class ClientProfileInfoPage extends StatelessWidget {
         _backgroundCover(context),
         _boxForm(context),
         _imageUser(context),
+        _buttomSignOut(),
       ],
     ));
+  }
+
+  Widget _buttomSignOut() {
+    return SafeArea(
+      child: Container(
+        margin: EdgeInsets.only(right: 10),
+        alignment: Alignment.topRight,
+        child: IconButton(
+          onPressed: () => con.signOut(),
+          icon: Icon(
+            Icons.power_settings_new,
+            color: Colors.black,
+          ),
+        ),
+      ),
+    );
   }
 
   Widget _backgroundCover(BuildContext context) {
@@ -64,7 +81,7 @@ class ClientProfileInfoPage extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () => con.goToProfileUpdate(),
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30.0),
