@@ -20,6 +20,24 @@ class UsersProvider extends GetConnect {
     );
     return response;
   }
+  //Sin imagen
+
+  Future<ResponseApi> update(User user) async {
+    Response response = await put(
+      '$url/updateWithoutImage',
+      user.toJson(),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    );
+
+    if (response.body == null) {
+      Get.snackbar('Error', 'No se pudo actualizar la información');
+      return ResponseApi();
+    }
+    ResponseApi responseApi = ResponseApi.fromJson(response.body);
+    return responseApi;
+  }
 
   /*Para almacenar imagenes grandes */
   Future<Stream> createWithImage(User user, File image) async {
@@ -32,22 +50,17 @@ class UsersProvider extends GetConnect {
     final response = await request.send();
     return response.stream.transform(utf8.decoder);
   }
-  /*GetX para imagenes libianos */
 
-  // Future<ResponseApi> createUserWithImageGetX(User user, File image) async {
-  //   FormData form = FormData({
-  //     'image': MultipartFile(image, filename: basename(image.path)),
-  //     'user': json.encode(user)
-  //   });
-  //   Response response = await post('$url/createWithImage', form);
-
-  //   if (response.body == null) {
-  //     Get.snackbar('Error en la paeticion', 'No se pudo crear el usuario');
-  //     return ResponseApi();
-  //   }
-  //   ResponseApi responseApi = ResponseApi.fromJson(response.body);
-  //   return responseApi;
-  // }
+  Future<Stream> updateWithImage(User user, File image) async {
+    Uri uri = Uri.http(Enviroment.API_URL_OLD, '/api/users/update');
+    final request = http.MultipartRequest('PUT', uri);
+    request.files.add(http.MultipartFile(
+        'image', http.ByteStream(image.openRead().cast()), await image.length(),
+        filename: basename(image.path)));
+    request.fields['user'] = json.encode(user);
+    final response = await request.send();
+    return response.stream.transform(utf8.decoder);
+  }
 
   Future<ResponseApi> login(String email, String password) async {
     Response response = await post(
