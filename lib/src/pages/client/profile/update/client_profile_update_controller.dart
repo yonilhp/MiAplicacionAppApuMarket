@@ -73,23 +73,6 @@ class ClientProfileUpdateController extends GetxController {
           }
         });
       }
-
-      // Stream stream = await usersProvider.createWithImage(user, imageFile!);
-      // stream.listen((res) {
-      //   progressDialog.close();
-      //   ResponseApi responseApi = ResponseApi.fromJson(json.decode(res));
-
-      //   if (responseApi.success == true) {
-      //     GetStorage().write(
-      //         'user',
-      //         responseApi
-      //             .data); // Ya estamos almacenando datos del usuario des sessión
-      //     //llamamos a la funcion goToHomePage
-      //     goToHomePage();
-      //   } else {
-      //     Get.snackbar('Registro fallido', responseApi.message ?? '');
-      //   }
-      // });
     }
   }
 
