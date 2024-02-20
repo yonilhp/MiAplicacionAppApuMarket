@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:apu_market/src/models/response_api.dart';
 import 'package:apu_market/src/models/user.dart';
+import 'package:apu_market/src/pages/client/profile/info/client_profile_info_controller.dart';
 import 'package:apu_market/src/provider/users_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,6 +23,8 @@ class ClientProfileUpdateController extends GetxController {
 
   UsersProvider usersProvider = UsersProvider();
 
+  ClientProfileInfoController clientProfileInfoController = Get.find();
+
   //Llamamos a su contructor de la clase para mostrar datos del usuario
   ClientProfileUpdateController() {
     nameController.text = user.name ?? '';
@@ -37,19 +40,22 @@ class ClientProfileUpdateController extends GetxController {
     if (isValidForm(name, lastname, phone)) {
       ProgressDialog progressDialog = ProgressDialog(context: context);
       progressDialog.show(max: 100, msg: 'Actualizando datos...');
-      User myUser =
-          User(id: user.id, name: name, lastname: lastname, phone: phone);
+      User myUser = User(
+          id: user.id,
+          name: name,
+          lastname: lastname,
+          phone: phone,
+          sessionToken: user.sessionToken);
 
       if (imageFile == null) {
         ResponseApi responseApi = await usersProvider.update(myUser);
+        print('Response Api update: ${responseApi.data}');
         Get.snackbar('Proceso terminado', responseApi.message ?? '');
         progressDialog.close();
         if (responseApi.success == true) {
-          user.name = name;
-          user.lastname = lastname;
-          user.phone = phone;
-          GetStorage().write('user', user);
-          print('Response Api update: ${responseApi.data}');
+          GetStorage().write('user', responseApi.data);
+          clientProfileInfoController.user.value =
+              User.fromJson(responseApi.data);
         }
       } else {
         Stream stream = await usersProvider.updateWithImage(myUser, imageFile!);
@@ -59,11 +65,9 @@ class ClientProfileUpdateController extends GetxController {
           Get.snackbar('Proceso terminado', responseApi.message ?? '');
           print('Response Api update: ${responseApi.data}');
           if (responseApi.success == true) {
-            user.name = name;
-            user.lastname = lastname;
-            user.phone = phone;
-            user.image = responseApi.data['image'];
-            GetStorage().write('user', user);
+            GetStorage().write('user', responseApi.data);
+            clientProfileInfoController.user.value =
+                User.fromJson(responseApi.data);
           } else {
             Get.snackbar('Registro fallido', responseApi.message ?? '');
           }

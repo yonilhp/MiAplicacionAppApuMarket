@@ -8,14 +8,14 @@ class ClientProfileInfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Stack(
-      children: [
-        _backgroundCover(context),
-        _boxForm(context),
-        _imageUser(context),
-        _buttomSignOut(),
-      ],
-    ));
+        body: Obx(() => Stack(
+              children: [
+                _backgroundCover(context),
+                _boxForm(context),
+                _imageUser(context),
+                _buttomSignOut(),
+              ],
+            )));
   }
 
   Widget _buttomSignOut() {
@@ -103,7 +103,7 @@ class ClientProfileInfoPage extends StatelessWidget {
       child: ListTile(
         leading: Icon(Icons.person),
         title: Text(
-          '${con.user.name ?? ""} ${con.user.lastname ?? ""}',
+          '${con.user.value.name ?? ""} ${con.user.value.lastname ?? ""}',
         ),
         subtitle: Text(
           'Nombre del usuario',
@@ -116,7 +116,7 @@ class ClientProfileInfoPage extends StatelessWidget {
     return ListTile(
       leading: Icon(Icons.email),
       title: Text(
-        '${con.user.email ?? ""}',
+        '${con.user.value.email ?? ""}',
       ),
       subtitle: Text(
         'Email',
@@ -128,7 +128,7 @@ class ClientProfileInfoPage extends StatelessWidget {
     return ListTile(
       leading: Icon(Icons.phone),
       title: Text(
-        '${con.user.phone ?? ""}',
+        '${con.user.value.phone ?? ""}',
       ),
       subtitle: Text(
         'Teléfono',
@@ -142,8 +142,8 @@ class ClientProfileInfoPage extends StatelessWidget {
         margin: EdgeInsets.only(top: 50),
         alignment: Alignment.topCenter,
         child: CircleAvatar(
-          backgroundImage: con.user.image != null
-              ? NetworkImage(con.user.image!)
+          backgroundImage: con.user.value.image != null
+              ? NetworkImage(con.user.value.image!)
               : AssetImage('assets/img/user_profile.png') as ImageProvider,
           radius: 60,
           backgroundColor: Colors.white,

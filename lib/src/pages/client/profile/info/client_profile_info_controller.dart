@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class ClientProfileInfoController extends GetxController {
-  User user = User.fromJson(GetStorage().read('user'));
+  var user = User.fromJson(GetStorage().read('user') ?? {}).obs;
 
   void signOut() {
     GetStorage().remove('user');
