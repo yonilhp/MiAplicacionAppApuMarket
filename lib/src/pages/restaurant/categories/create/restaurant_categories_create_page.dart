@@ -1,6 +1,11 @@
+import 'package:apu_market/src/pages/restaurant/categories/create/restaurant_categories_create_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class RestaurantCategoriesCreatePage extends StatelessWidget {
+  final RestaurantCategoriesCreateController con =
+      Get.put(RestaurantCategoriesCreateController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +53,7 @@ class RestaurantCategoriesCreatePage extends StatelessWidget {
             _textYourInfo(),
             _textFieldName(),
             _textFieldDescription(),
-            _buttonUpdate(context)
+            _buttonCreate(context)
           ],
         ),
       ),
@@ -59,7 +64,7 @@ class RestaurantCategoriesCreatePage extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 40),
       child: TextField(
-        //controller: con.nameController,
+        controller: con.nameController,
         keyboardType: TextInputType.text,
         decoration: InputDecoration(
           hintText: 'Nombre',
@@ -73,7 +78,7 @@ class RestaurantCategoriesCreatePage extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
       child: TextField(
-        //controller: con.lastnameController,
+        controller: con.descriptionController,
         keyboardType: TextInputType.text,
         maxLines: 4,
         decoration: InputDecoration(
@@ -86,12 +91,12 @@ class RestaurantCategoriesCreatePage extends StatelessWidget {
     );
   }
 
-  Widget _buttonUpdate(BuildContext context) {
+  Widget _buttonCreate(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () => con.createCategory(),
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30.0),
