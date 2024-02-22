@@ -1,4 +1,5 @@
 import 'package:apu_market/src/models/user.dart';
+import 'package:apu_market/src/pages/client/home/client_home_page.dart';
 import 'package:apu_market/src/pages/client/products/list/client_products_list_page.dart';
 import 'package:apu_market/src/pages/client/profile/info/client_profile_info_page.dart';
 import 'package:apu_market/src/pages/client/profile/update/client_profile_update_page.dart';
@@ -6,6 +7,7 @@ import 'package:apu_market/src/pages/delivery/orders/list/delivery_orders_list_p
 import 'package:apu_market/src/pages/home/home_page.dart';
 import 'package:apu_market/src/pages/login/login_page.dart';
 import 'package:apu_market/src/pages/register/register_page.dart';
+import 'package:apu_market/src/pages/restaurant/home/restaurant_home_page.dart';
 import 'package:apu_market/src/pages/restaurant/orders/list/restaurant_orders_list_page.dart';
 import 'package:apu_market/src/pages/roles/roles_page.dart';
 // import 'package:apu_market/src/pages/splash/splash_screen.dart';
@@ -53,6 +55,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    print('TOKEN DE SESSION DE USUARIO: ${userSession.sessionToken}');
   }
 
   @override
@@ -66,7 +69,7 @@ class _MyAppState extends State<MyApp> {
       initialRoute: userSession.id != null
           ? userSession.roles!.length > 1
               ? '/roles'
-              : '/client/products/list'
+              : '/client/home'
           : '/',
       getPages: [
         GetPage(name: '/', page: () => LoginPage()),
@@ -76,9 +79,11 @@ class _MyAppState extends State<MyApp> {
         GetPage(
             name: '/restaurant/orders/list',
             page: () => RestaurantOrdersListPage()),
+        GetPage(name: '/restaurant/home', page: () => RestaurantHomePage()),
         GetPage(
             name: '/delivery/orders/list',
             page: () => DeliveryOrdersListPage()),
+        GetPage(name: '/client/home', page: () => ClientHomePage()),
         GetPage(
             name: '/client/products/list',
             page: () => ClientProductsListPage()),

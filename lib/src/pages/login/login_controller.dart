@@ -39,7 +39,7 @@ class LoginController extends GetxController {
         if (myUser.roles!.length > 1) {
           goToRolesPage();
         } else {
-          goToClientProductPage();
+          goToClientHomePage();
         }
       } else {
         Get.snackbar('Login fallido', responseApi.message ?? '');
@@ -47,8 +47,8 @@ class LoginController extends GetxController {
     }
   }
 
-  void goToClientProductPage() {
-    Get.offNamedUntil('/client/products/list', (route) => false);
+  void goToClientHomePage() {
+    Get.offNamedUntil('/client/home', (route) => false);
   }
 
   void goToRolesPage() {
