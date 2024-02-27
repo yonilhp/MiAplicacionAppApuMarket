@@ -102,10 +102,10 @@ class RestaurantProductsCreatePage extends StatelessWidget {
             style: TextStyle(fontSize: 15),
           ),
           items: _dropDownItems(categories),
-          //value: con.idCategory,
+          value: con.idCategory.value == '' ? null : con.idCategory.value,
           onChanged: (option) {
             print('Opcion seleccionada ${option}');
-            con.idCategory = option.toString();
+            con.idCategory.value = option.toString();
           },
         ));
   }
