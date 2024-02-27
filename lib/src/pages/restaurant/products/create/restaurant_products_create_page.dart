@@ -92,7 +92,7 @@ class RestaurantProductsCreatePage extends StatelessWidget {
             alignment: Alignment.centerRight,
             child: Icon(
               Icons.arrow_drop_down_circle,
-              color: Colors.amber,
+              color: Color.fromARGB(235, 72, 184, 192),
             ),
           ),
           elevation: 3,
@@ -198,7 +198,7 @@ class RestaurantProductsCreatePage extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: () => con.createCategory(),
+        onPressed: () => con.createProduct(context),
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30.0),
