@@ -27,10 +27,14 @@ class ProductsProvider extends GetConnect {
           'Tu usuario no está permitido leer esta información');
       return [];
     }
-    //Convierte el cuerpo de la respuesta en una lista de categorías utilizando el método estático fromJsonList()
-    List<Product> products = Product.fromJsonList(response.body);
-
-    return products;
+    if (response.body != null) {
+      List<Product> products = Product.fromJsonList(response.body);
+      return products;
+    } else {
+      // Manejar el caso en que el cuerpo de la respuesta sea nulo
+      // Puedes devolver una lista vacía o lanzar una excepción según tus necesidades
+      return [];
+    }
   }
 
   Future<Stream> create(Product product, List<File> images) async {
