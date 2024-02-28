@@ -1,8 +1,7 @@
 import 'package:apu_market/src/pages/client/home/client_home_controller.dart';
-import 'package:apu_market/src/pages/client/products/list/client_products_list_controller.dart';
+import 'package:apu_market/src/pages/client/products/list/client_products_list_page.dart';
 import 'package:apu_market/src/pages/client/profile/info/client_profile_info_page.dart';
 import 'package:apu_market/src/pages/delivery/orders/list/delivery_orders_list_page.dart';
-import 'package:apu_market/src/pages/restaurant/orders/list/restaurant_orders_list_page.dart';
 import 'package:apu_market/src/utils/custom_animated_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,7 +16,7 @@ class ClientHomePage extends StatelessWidget {
         body: Obx(() => IndexedStack(
               index: con.indexTab.value,
               children: [
-                RestaurantOrdersListPage(),
+                ClientProductsListPage(),
                 DeliveryOrdersListPage(),
                 ClientProfileInfoPage()
               ],
@@ -37,7 +36,7 @@ class ClientHomePage extends StatelessWidget {
           items: [
             BottomNavyBarItem(
               icon: Icon(Icons.apps),
-              title: Text('Home'),
+              title: Text('Productos'),
               activeColor: Colors.white,
               inactiveColor: Colors.black,
             ),

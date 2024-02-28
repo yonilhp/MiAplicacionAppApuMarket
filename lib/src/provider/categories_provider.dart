@@ -24,10 +24,22 @@ class CategoriesProvider extends GetConnect {
           'Tu usuario no está permitido leer esta información');
       return [];
     }
-    List<Category> categories = Category.fromJsonList(response.body);
+    //Convierte el cuerpo de la respuesta en una lista de categorías utilizando el método estático fromJsonList()
+    if (response.body != null) {
+      List<Category> categories = Category.fromJsonList(response.body);
+      print(categories);
+      return categories;
+    } else {
+      // Maneja el caso en el que response.body sea null
+      // Puedes lanzar una excepción, devolver una lista vacía o realizar cualquier otra acción adecuada
+      return []; // Devolver una lista vacía en caso de que response.body sea null
+    }
 
-    print(categories);
-    return categories;
+    //Lo cambia esto por el if de arriba
+
+    //List<Category> categories = Category.fromJsonList(response.body);
+    // print(categories);
+    // return categories;
   }
 
   Future<ResponseApi> create(Category category) async {

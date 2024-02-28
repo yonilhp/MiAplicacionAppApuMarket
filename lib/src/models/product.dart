@@ -35,9 +35,22 @@ class Product {
         image2: json["image2"],
         image3: json["image3"],
         idCategory: json["id_category"],
-        price: json["price"]?.toDouble(),
+        //price:json["price"].toDouble(),
+        price:
+            json["price"] != null ? double.tryParse(json["price"]) ?? 0.0 : 0.0,
         quantity: json["quantity"],
       );
+
+  static List<Product> fromJsonList(Map<String, dynamic> jsonList) {
+    List<Product> toLists = [];
+
+    if (jsonList.containsKey('data')) {
+      List<dynamic> dataList = jsonList['data'];
+      toLists = dataList.map((item) => Product.fromJson(item)).toList();
+    }
+
+    return toLists;
+  }
 
   Map<String, dynamic> toJson() => {
         "id": id,
