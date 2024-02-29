@@ -1,8 +1,11 @@
 import 'package:apu_market/src/models/category.dart';
 import 'package:apu_market/src/models/product.dart';
+import 'package:apu_market/src/pages/client/products/detail/client_products_detail_page.dart';
 import 'package:apu_market/src/provider/categories_provider.dart';
 import 'package:apu_market/src/provider/products_provider.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class ClientProductsListController extends GetxController {
   CategoriesProvider categoriesProvider = CategoriesProvider();
@@ -23,5 +26,10 @@ class ClientProductsListController extends GetxController {
 
   Future<List<Product>> getProducts(String idCategory) async {
     return await productsProvider.findByCategory(idCategory);
+  }
+
+  void openBottomSheet(BuildContext context, Product product) {
+    showMaterialModalBottomSheet(
+        context: context, builder: (context) => ClientProductsDetailPage());
   }
 }

@@ -42,6 +42,7 @@ dependencies:
   sn_progress_dialog: ^1.1.3
   font_awesome_flutter: ^10.7.0
   flutter_svg: ^2.0.10+1
+  modal_bottom_sheet: ^3.0.0-pre
 
 dev_dependencies:
   flutter_test:

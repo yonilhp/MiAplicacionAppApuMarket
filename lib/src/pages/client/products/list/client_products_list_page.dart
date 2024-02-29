@@ -41,7 +41,8 @@ class ClientProductsListPage extends StatelessWidget {
                           return ListView.builder(
                             itemCount: snapshot.data?.length ?? 0,
                             itemBuilder: (_, index) {
-                              return _cardProduct(snapshot.data![index]);
+                              return _cardProduct(
+                                  context, snapshot.data![index]);
                             },
                           );
                         } else {
@@ -56,66 +57,69 @@ class ClientProductsListPage extends StatelessWidget {
         ));
   }
 
-  Widget _cardProduct(Product product) {
-    return Column(
-      children: [
-        Container(
-          margin: EdgeInsets.only(top: 15, left: 20, right: 20),
-          child: ListTile(
-            title: Text(product.name ?? '',
-                style: TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.bold)),
-            subtitle: Column(
-              //Alinear los textos al comienzo
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 5,
+  Widget _cardProduct(BuildContext context, Product product) {
+    return GestureDetector(
+      onTap: () => con.openBottomSheet(context, product),
+      child: Column(
+        children: [
+          Container(
+            margin: EdgeInsets.only(top: 15, left: 20, right: 20),
+            child: ListTile(
+              title: Text(product.name ?? '',
+                  style: TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold)),
+              subtitle: Column(
+                //Alinear los textos al comienzo
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    product.description ?? '',
+                    maxLines: 2,
+                    style: TextStyle(fontSize: 13),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text('\$${product.price.toString()}',
+                      style: TextStyle(
+                          color: Colors.black54, fontWeight: FontWeight.bold)),
+                  SizedBox(
+                    height: 20,
+                  ),
+                ],
+              ),
+              // para mostrar precio
+              // Para usar imagen en parte izquierda
+              // leading:
+              // Para usar imagen en parte derecha se usa :
+              trailing: Container(
+                height: 70,
+                width: 60,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: FadeInImage(
+                      image: product.image1 != null
+                          ? NetworkImage(product.image1!)
+                          : AssetImage('assets/img/no-image.png')
+                              as ImageProvider,
+                      //cover se usa para que tenga un tamaño proporcional las imagenes
+                      fit: BoxFit.cover,
+                      fadeInDuration: Duration(milliseconds: 50),
+                      placeholder: AssetImage('assets/img/no-image.png')),
                 ),
-                Text(
-                  product.description ?? '',
-                  maxLines: 2,
-                  style: TextStyle(fontSize: 13),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text('\$${product.price.toString()}',
-                    style: TextStyle(
-                        color: Colors.black54, fontWeight: FontWeight.bold)),
-                SizedBox(
-                  height: 20,
-                ),
-              ],
-            ),
-            // para mostrar precio
-            // Para usar imagen en parte izquierda
-            // leading:
-            // Para usar imagen en parte derecha se usa :
-            trailing: Container(
-              height: 70,
-              width: 60,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: FadeInImage(
-                    image: product.image1 != null
-                        ? NetworkImage(product.image1!)
-                        : AssetImage('assets/img/no-image.png')
-                            as ImageProvider,
-                    //cover se usa para que tenga un tamaño proporcional las imagenes
-                    fit: BoxFit.cover,
-                    fadeInDuration: Duration(milliseconds: 50),
-                    placeholder: AssetImage('assets/img/no-image.png')),
               ),
             ),
           ),
-        ),
-        Divider(
-            height: 1,
-            color: Color.fromARGB(235, 72, 184, 192),
-            indent: 37,
-            endIndent: 37)
-      ],
+          Divider(
+              height: 1,
+              color: Color.fromARGB(235, 72, 184, 192),
+              indent: 37,
+              endIndent: 37)
+        ],
+      ),
     );
   }
 }
