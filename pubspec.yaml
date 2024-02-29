@@ -43,6 +43,7 @@ dependencies:
   font_awesome_flutter: ^10.7.0
   flutter_svg: ^2.0.10+1
   modal_bottom_sheet: ^3.0.0-pre
+  flutter_image_slideshow: ^0.1.6
 
 dev_dependencies:
   flutter_test:
