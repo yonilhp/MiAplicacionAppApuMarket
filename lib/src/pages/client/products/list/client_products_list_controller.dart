@@ -28,6 +28,7 @@ class ClientProductsListController extends GetxController {
     return await productsProvider.findByCategory(idCategory);
   }
 
+// Aqui estamos creando la funcion openBottomSheet que va recibir un BuildContext y un Product
   void openBottomSheet(BuildContext context, Product product) {
     showMaterialModalBottomSheet(
         context: context,

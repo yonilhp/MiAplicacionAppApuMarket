@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:apu_market/src/models/product.dart';
 import 'package:apu_market/src/models/response_api.dart';
+import 'package:apu_market/src/pages/restaurant/products/home/restaurant_products_home_page.dart';
 import 'package:apu_market/src/provider/categories_provider.dart';
 import 'package:apu_market/src/models/category.dart';
 import 'package:apu_market/src/provider/products_provider.dart';
@@ -59,16 +60,19 @@ class RestaurantProductsCreateController extends GetxController {
       List<File> images = [];
       images.add(imageFile1!);
       images.add(imageFile2!);
+      print("agregue las imagenes");
       images.add(imageFile3!);
       Stream stream = await productsProvider.create(product, images);
+      print(stream);
       stream.listen((res) {
         progressDialog.close();
         ResponseApi responseApi = ResponseApi.fromJson(json.decode(res));
         Get.snackbar('Proceso terminado', responseApi.message ?? '');
+        print(responseApi);
         if (responseApi.success == true) {
           clearForm();
+          Get.off(() => RestaurantProductsHomePage());
         }
-        ;
       });
     }
   }

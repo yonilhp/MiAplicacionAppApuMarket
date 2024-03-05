@@ -53,7 +53,7 @@ class ClientProductsDetailPage extends StatelessWidget {
       children: [
         Divider(height: 1, color: Color.fromARGB(235, 72, 184, 192)),
         Container(
-          margin: EdgeInsets.only(left: 30, right: 30, top: 25),
+          margin: EdgeInsets.only(left: 10, right: 15, top: 25),
           child: Row(
             children: [
               ElevatedButton(
@@ -67,12 +67,16 @@ class ClientProductsDetailPage extends StatelessWidget {
                 ),
                 style: ElevatedButton.styleFrom(
                   primary: Color.fromARGB(235, 72, 184, 192),
+                  minimumSize: Size(40, 37),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(25),
                         bottomLeft: Radius.circular(25)),
                   ),
                 ),
+              ),
+              SizedBox(
+                width: 1,
               ),
               ElevatedButton(
                 onPressed: () {},
@@ -85,11 +89,14 @@ class ClientProductsDetailPage extends StatelessWidget {
                 ),
                 style: ElevatedButton.styleFrom(
                   primary: Color.fromARGB(235, 72, 184, 192),
-                  //minimumSize: Size(40, 37),
+                  minimumSize: Size(40, 37),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(10),
                   ),
                 ),
+              ),
+              SizedBox(
+                width: 1,
               ),
               ElevatedButton(
                 onPressed: () {},
@@ -102,10 +109,12 @@ class ClientProductsDetailPage extends StatelessWidget {
                 ),
                 style: ElevatedButton.styleFrom(
                   primary: Color.fromARGB(235, 72, 184, 192),
+                  minimumSize: Size(40, 37),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(25),
-                        bottomRight: Radius.circular(25)),
+                      topRight: Radius.circular(25),
+                      bottomRight: Radius.circular(25),
+                    ),
                   ),
                 ),
               ),
@@ -113,14 +122,15 @@ class ClientProductsDetailPage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {},
                 child: Text(
-                  'Agregar    ${product?.price ?? ''}',
+                  'Agregar        ${product?.price ?? ''}',
                   style: TextStyle(
                     color: Color.fromARGB(235, 72, 184, 192),
-                    fontSize: 15,
+                    fontSize: 18,
                   ),
                 ),
                 style: ElevatedButton.styleFrom(
                   primary: Colors.white,
+                  minimumSize: Size(180, 37),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25),
                   ),

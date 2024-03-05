@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:apu_market/src/models/category.dart';
 import 'package:apu_market/src/pages/restaurant/products/create/restaurant_products_create_controller.dart';
+import 'package:apu_market/src/pages/restaurant/products/home/restaurant_products_home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -197,7 +198,12 @@ class RestaurantProductsCreatePage extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: () => con.createProduct(context),
+        onPressed: () {
+          con.createProduct(context);
+          // Una vez que se ha creado el producto, navega a la página de inicio de productos del restaurante
+          //Get.toNamed('restaurant/products');
+          //Get.off(RestaurantProductsHomePage());
+        },
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30.0),

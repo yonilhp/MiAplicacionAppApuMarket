@@ -1,38 +1,38 @@
 import 'package:apu_market/src/models/category.dart';
 import 'package:apu_market/src/models/product.dart';
-import 'package:apu_market/src/pages/client/products/list/client_products_list_controller.dart';
+import 'package:apu_market/src/pages/restaurant/products/home/restaurant_products_home_controller.dart';
 import 'package:apu_market/src/widgets/no_data_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ClientProductsListPage extends StatelessWidget {
-  ClientProductsListController con = Get.put(ClientProductsListController());
-  //ClientProductsListPage({Key? key}) : super(key: key); // Agregar un constructor con un parámetro nombrado 'key'
+class RestaurantProductsHomePage extends StatelessWidget {
+  RestaurantProductsHomeController con =
+      Get.put(RestaurantProductsHomeController());
 
   @override
   Widget build(BuildContext context) {
+    // va recibir la longitud de cuantas categorias va recibir
     return Obx(() => DefaultTabController(
           length: con.categories.length,
           child: Scaffold(
-              appBar: PreferredSize(
-                preferredSize: Size.fromHeight(50.0),
-                child: AppBar(
-                  bottom: TabBar(
-                      isScrollable: true,
-                      indicator: BoxDecoration(
-                          color: Color.fromARGB(235, 72, 184, 192)),
-                      labelColor: Colors.white,
-                      unselectedLabelColor: Colors.black,
-                      tabs:
-                          List<Widget>.generate(con.categories.length, (index) {
-                        return Tab(
-                          child: Text(con.categories[index].name ?? ''),
-                        );
-                      })),
-                ),
+            appBar: PreferredSize(
+              preferredSize: Size.fromHeight(50.0),
+              child: AppBar(
+                bottom: TabBar(
+                    isScrollable: true,
+                    indicator:
+                        BoxDecoration(color: Color.fromARGB(235, 72, 184, 192)),
+                    labelColor: Colors.white,
+                    unselectedLabelColor: Colors.black,
+                    tabs: List<Widget>.generate(con.categories.length, (index) {
+                      return Tab(
+                        child: Text(con.categories[index].name ?? ''),
+                      );
+                    })),
               ),
-              body: TabBarView(
-                  children: con.categories.map((Category category) {
+            ),
+            body: TabBarView(
+              children: con.categories.map((Category category) {
                 //Aqui estamos usando un FutureBuilder para mostrar los productos de cada categoria
                 return FutureBuilder(
                     future: con.getProducts(category.id ?? '1'),
@@ -55,13 +55,29 @@ class ClientProductsListPage extends StatelessWidget {
                         return NoDataWidget(text: 'No hay productos');
                       }
                     });
-              }).toList())),
+              }).toList(),
+            ),
+            floatingActionButton: FloatingActionButton(
+                onPressed: () {
+                  con.navigateToCreateProductPage();
+                },
+                child: Icon(
+                  Icons.add,
+                  size: 30,
+                  color: Colors.white,
+                ),
+                backgroundColor: Color.fromARGB(235, 72, 184, 192),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25),
+                )),
+          ),
         ));
   }
 
   Widget _cardProduct(BuildContext context, Product product) {
     return GestureDetector(
-      onTap: () => con.openBottomSheet(context, product),
+      //Aqui estamos usando un GestureDetector para abrir un BottomSheet que va mostrar los detalles del producto
+      onTap: () {},
       child: Column(
         children: [
           Container(
@@ -85,9 +101,39 @@ class ClientProductsListPage extends StatelessWidget {
                   SizedBox(
                     height: 10,
                   ),
-                  Text('\$${product.price.toString()}',
-                      style: TextStyle(
-                          color: Colors.black54, fontWeight: FontWeight.bold)),
+                  Row(
+                    children: [
+                      Text('\$${product.price.toString()}',
+                          style: TextStyle(
+                              color: Colors.black54,
+                              fontWeight: FontWeight.bold)),
+                      // icono de borrar productos
+                      SizedBox(
+                        width: 60,
+                      ),
+                      IconButton(
+                        icon: Icon(
+                          Icons.delete,
+                          color: Colors.red,
+                        ),
+                        onPressed: () {
+                          con.showAlertDialog(context, product.id ?? '');
+                        },
+                      ),
+                      SizedBox(
+                        width: 30,
+                      ),
+                      IconButton(
+                        icon: Icon(
+                          Icons.edit_square,
+                          color: Color.fromARGB(235, 72, 184, 192),
+                        ),
+                        onPressed: () {
+                          //con.deleteProduct(product.id ?? '');
+                        },
+                      ),
+                    ],
+                  ),
                   SizedBox(
                     height: 20,
                   ),

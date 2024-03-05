@@ -5,6 +5,7 @@ import 'package:apu_market/src/pages/restaurant/categories/create/restaurant_cat
 import 'package:apu_market/src/pages/restaurant/home/restaurant_home_controller.dart';
 import 'package:apu_market/src/pages/restaurant/orders/list/restaurant_orders_list_page.dart';
 import 'package:apu_market/src/pages/restaurant/products/create/restaurant_products_create_page.dart';
+import 'package:apu_market/src/pages/restaurant/products/home/restaurant_products_home_page.dart';
 import 'package:apu_market/src/utils/custom_animated_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,7 +22,7 @@ class RestaurantHomePage extends StatelessWidget {
               children: [
                 RestaurantOrdersListPage(),
                 RestaurantCategoriesCreatePage(),
-                RestaurantProductsCreatePage(),
+                RestaurantProductsHomePage(),
                 ClientProfileInfoPage()
               ],
             )));
