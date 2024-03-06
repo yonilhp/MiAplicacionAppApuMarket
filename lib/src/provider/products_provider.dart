@@ -58,6 +58,24 @@ class ProductsProvider extends GetConnect {
     return response.stream.transform(utf8.decoder);
   }
 
+  Future<Stream> update(Product product, List<File> images) async {
+    Uri uri = Uri.http(Enviroment.API_URL_OLD, '/api/products/update');
+    final request = http.MultipartRequest('PUT', uri);
+    request.headers['Authorization'] = userSession.sessionToken ?? '';
+
+    for (int i = 0; i < images.length; i++) {
+      request.files.add(http.MultipartFile(
+          'image',
+          http.ByteStream(images[i].openRead().cast()),
+          await images[i].length(),
+          filename: basename(images[i].path)));
+    }
+
+    request.fields['product'] = json.encode(product);
+    final response = await request.send();
+    return response.stream.transform(utf8.decoder);
+  }
+
   Future<void> deleteProduct(String productId) async {
     try {
       // Realiza una solicitud HTTP DELETE al backend para eliminar el producto por su ID
