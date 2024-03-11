@@ -39,9 +39,9 @@ class LoginPage extends StatelessWidget {
 
   Widget _textAppName() {
     return Text(
-      'QORI MARKET',
+      'SHIJANI ANTOJITOS',
       style: TextStyle(
-          color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
+          color: Colors.yellow, fontSize: 20, fontWeight: FontWeight.bold),
     );
   }
 

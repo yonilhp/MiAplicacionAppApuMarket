@@ -1,0 +1,261 @@
+import 'dart:io';
+import 'package:apu_market/src/models/category.dart';
+import 'package:apu_market/src/models/product.dart';
+import 'package:apu_market/src/pages/restaurant/products/create/restaurant_products_create_controller.dart';
+import 'package:apu_market/src/pages/restaurant/products/update/restaurant_products_update_controller.dart';
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+
+class RestaurantProductsUpdatePage extends StatelessWidget {
+  final Product product;
+
+  RestaurantProductsUpdatePage(this.product, {super.key});
+
+  RestaurantProductsUpdateController con =
+      Get.put(RestaurantProductsUpdateController());
+  @override
+  Widget build(BuildContext context) {
+    // con.nameController.text = product.name ?? '';
+    // con.descriptionController.text = product.description ?? '';
+    // con.priceController.text = product.price.toString();
+    // con.idCategory.value = product.idCategory ?? '';
+    // con.imagesToFile(product.image1.toString(), product.image2.toString(),
+    //     product.image3.toString());
+
+    con.loadData(product);
+
+    return Scaffold(
+        body: Obx(() => Stack(
+              children: [
+                _backgroundCover(context),
+                _boxForm(context),
+                _textNewProduct(context),
+              ],
+            )));
+  }
+
+  Widget _backgroundCover(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: MediaQuery.of(context).size.height * 0.35,
+      color: Color.fromARGB(235, 72, 184, 192),
+    );
+  }
+
+  Widget _boxForm(BuildContext context) {
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.70,
+      margin: EdgeInsets.only(
+          top: MediaQuery.of(context).size.height * 0.18, left: 50, right: 50),
+      decoration: BoxDecoration(
+        // border: Border.all(
+        //   color: Colors.grey, // Color del borde
+        //   width: 2.0, // Ancho del borde
+        // ),
+        borderRadius: BorderRadius.circular(20),
+        color: Colors.white,
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+              //color de borde
+
+              color: Colors.black54,
+              blurRadius: 15.0,
+              offset: Offset(0.0, 0.75))
+        ],
+      ),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            _textYourInfo(),
+            _textFieldName(),
+            _textFieldDescription(),
+            _textFieldPrice(),
+            _dropDownCategories(con.categories),
+            Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  GetBuilder<RestaurantProductsUpdateController>(
+                    builder: (value) => _cardImage(con.imageFile1, 1, context),
+                  ),
+                  //sizebox
+                  SizedBox(width: 5),
+                  GetBuilder<RestaurantProductsUpdateController>(
+                    builder: (value) => _cardImage(con.imageFile2, 2, context),
+                  ),
+                  SizedBox(width: 5),
+                  GetBuilder<RestaurantProductsUpdateController>(
+                    builder: (value) => _cardImage(con.imageFile3, 3, context),
+                  ),
+                ],
+              ),
+            ),
+            _buttonUpdate(context)
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _dropDownCategories(List<Category> categories) {
+    return Container(
+        padding: EdgeInsets.symmetric(horizontal: 30),
+        margin: EdgeInsets.only(top: 15),
+        child: DropdownButton(
+          underline: Container(
+            alignment: Alignment.centerRight,
+            child: Icon(
+              Icons.arrow_drop_down_circle,
+              color: Color.fromARGB(235, 72, 184, 192),
+            ),
+          ),
+          elevation: 3,
+          isExpanded: true,
+          hint: Text(
+            'Seleccionar categoria',
+            style: TextStyle(fontSize: 15),
+          ),
+          items: _dropDownItems(categories),
+          value: con.idCategory.value == '' ? null : con.idCategory.value,
+          onChanged: (option) {
+            print('Opcion seleccionada ${option}');
+            con.idCategory.value = option.toString();
+          },
+        ));
+  }
+
+  List<DropdownMenuItem<String?>> _dropDownItems(List<Category> categories) {
+    List<DropdownMenuItem<String>> list = [];
+
+    categories.forEach((category) {
+      list.add(DropdownMenuItem(
+          child: Text(category.name ?? ''), value: category.id));
+    });
+    return list;
+  }
+
+  Widget _cardImage(File? imageFile, int numberFile, BuildContext context) {
+    return GetBuilder<RestaurantProductsUpdateController>(
+      builder: (value) => GestureDetector(
+          onTap: () => con.showAlertDialog(context, numberFile),
+          child: Card(
+            elevation: 5,
+            child: Container(
+                padding: EdgeInsets.all(10),
+                // Borde radio del container
+                decoration: BoxDecoration(
+                  color: Colors.white, // Color de fondo del contenedor
+                  borderRadius: BorderRadius.circular(
+                      5), // Ajusta el radio según lo necesites
+                ),
+                height: 70,
+                width: MediaQuery.of(context).size.width * 0.17,
+                child: imageFile != null
+                    ? Image.file(
+                        imageFile,
+                        fit: BoxFit.cover,
+                      )
+                    : Image(
+                        image: AssetImage('assets/img/add_imageNew.png'),
+                      )),
+          )),
+    );
+  }
+
+  Widget _textFieldName() {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 40),
+      child: TextField(
+        controller: con.nameController,
+        keyboardType: TextInputType.text,
+        decoration: InputDecoration(
+          hintText: 'Nombre',
+          prefixIcon: Icon(Icons.category),
+        ),
+      ),
+    );
+  }
+
+  Widget _textFieldPrice() {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 40),
+      child: TextField(
+        controller: con.priceController,
+        keyboardType: TextInputType.number,
+        decoration: InputDecoration(
+            hintText: 'Precio', prefixIcon: Icon(FontAwesomeIcons.dollarSign)),
+      ),
+    );
+  }
+
+  Widget _textFieldDescription() {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+      child: TextField(
+        controller: con.descriptionController,
+        keyboardType: TextInputType.text,
+        maxLines: 4,
+        decoration: InputDecoration(
+          hintText: 'Descripción',
+          prefixIcon: Container(
+              margin: EdgeInsets.only(bottom: 70),
+              child: Icon(Icons.description)),
+        ),
+      ),
+    );
+  }
+
+  Widget _buttonUpdate(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+      width: double.infinity,
+      child: ElevatedButton(
+        onPressed: () {
+          con.updateProduct(context);
+          // Una vez que se ha creado el producto, navega a la página de inicio de productos del restaurante
+          //Get.toNamed('restaurant/products');
+          //Get.off(RestaurantProductsHomePage());
+        },
+        style: ElevatedButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30.0),
+            // side: BorderSide(color: Colors.lightBlue, width: 2.0)
+          ),
+          padding: EdgeInsets.symmetric(vertical: 15),
+        ),
+        child: Text(
+          'ACTUALIZAR',
+          style: TextStyle(color: Colors.black),
+        ),
+      ),
+    );
+  }
+
+  Widget _textYourInfo() {
+    return Container(
+        margin: EdgeInsets.only(top: 40, bottom: 30),
+        child: Text(
+          'ACTUALICE ESTA INFORMACION',
+          style: TextStyle(color: Colors.black),
+        ));
+  }
+
+  Widget _textNewProduct(BuildContext context) {
+    return SafeArea(
+      child: Container(
+        margin: EdgeInsets.only(top: 25),
+        alignment: Alignment.topCenter,
+        child: Text(
+          //actualizar producto
+          "ACTUALIZAR PRODUCTO",
+          style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              fontStyle: FontStyle.italic),
+        ),
+      ),
+    );
+  }
+}

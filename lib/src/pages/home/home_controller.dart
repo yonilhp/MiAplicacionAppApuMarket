@@ -3,6 +3,9 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class HomeController extends GetxController {
+  // Aqui se crea una instancia de la clase User con key user
+  //que asignamos en login controller
+  // si viene nulo le asignamos un objeto vacio
   User user = User.fromJson(GetStorage().read('user') ?? {});
 
   HomeController() {

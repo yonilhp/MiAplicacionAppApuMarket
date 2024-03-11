@@ -3,6 +3,7 @@ import 'package:apu_market/src/models/product.dart';
 import 'package:apu_market/src/pages/restaurant/products/create/restaurant_products_create_page.dart';
 import 'package:apu_market/src/pages/restaurant/products/delete/restaurant_products_delete_page.dart';
 import 'package:apu_market/src/pages/restaurant/products/home/restaurant_products_home_page.dart';
+import 'package:apu_market/src/pages/restaurant/products/update/restaurant_products_update_page.dart';
 import 'package:apu_market/src/provider/categories_provider.dart';
 import 'package:apu_market/src/provider/products_provider.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,10 @@ class RestaurantProductsHomeController extends GetxController {
   //un método para navegar a la página de creación de productos.
   void navigateToCreateProductPage() {
     Get.to(RestaurantProductsCreatePage());
+  }
+
+  void updateProduct(product) {
+    Get.to(() => RestaurantProductsUpdatePage(product));
   }
 
   void getCategory() async {

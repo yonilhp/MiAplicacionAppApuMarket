@@ -9,6 +9,7 @@ class RestaurantProductsHomePage extends StatelessWidget {
   RestaurantProductsHomeController con =
       Get.put(RestaurantProductsHomeController());
 
+  // Product product = Product();
   @override
   Widget build(BuildContext context) {
     // va recibir la longitud de cuantas categorias va recibir
@@ -129,7 +130,7 @@ class RestaurantProductsHomePage extends StatelessWidget {
                           color: Color.fromARGB(235, 72, 184, 192),
                         ),
                         onPressed: () {
-                          //con.deleteProduct(product.id ?? '');
+                          con.updateProduct(product);
                         },
                       ),
                     ],

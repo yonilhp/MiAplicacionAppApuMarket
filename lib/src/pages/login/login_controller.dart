@@ -10,7 +10,7 @@ class LoginController extends GetxController {
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
+// aqui se crea una instancia de la clase UsersProvider
   UsersProvider usersProvider = UsersProvider();
 
   void goToRegisterPage() {
@@ -25,6 +25,7 @@ class LoginController extends GetxController {
     print('Password: $password');
 
     if (isValidForm(email, password)) {
+      // Aqui se llama a la función login del proveedor
       ResponseApi responseApi = await usersProvider.login(email, password);
 
       print('Response Api: ${responseApi.toJson()}');
@@ -33,11 +34,12 @@ class LoginController extends GetxController {
         GetStorage().write(
             'user',
             responseApi
-                .data); // Ya estamos almacenando datos del usuario des sessión
+                .data); // Ya estamos almacenando datos del usuario des sessión con key 'user'
         User myUser = User.fromJson(GetStorage().read('user') ?? {});
-
+        // Si el usuario tiene mas de un rol, lo enviamos a la página de roles
         if (myUser.roles!.length > 1) {
           goToRolesPage();
+          // Si el usuario tiene un solo rol, lo enviamos a la página de homePage
         } else {
           goToClientHomePage();
         }

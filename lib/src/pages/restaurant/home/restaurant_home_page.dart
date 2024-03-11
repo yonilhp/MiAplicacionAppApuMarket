@@ -6,6 +6,7 @@ import 'package:apu_market/src/pages/restaurant/home/restaurant_home_controller.
 import 'package:apu_market/src/pages/restaurant/orders/list/restaurant_orders_list_page.dart';
 import 'package:apu_market/src/pages/restaurant/products/create/restaurant_products_create_page.dart';
 import 'package:apu_market/src/pages/restaurant/products/home/restaurant_products_home_page.dart';
+import 'package:apu_market/src/pages/roles/roles_page.dart';
 import 'package:apu_market/src/utils/custom_animated_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,6 +17,22 @@ class RestaurantHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          title: Text(
+            'Restaurante',
+            //centrar texto
+            style: TextStyle(color: Colors.white),
+          ),
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              Get.offAll(() => RolesPage());
+            },
+          ),
+        ),
         bottomNavigationBar: _bottomBar(),
         body: Obx(() => IndexedStack(
               index: con.indexTab.value,

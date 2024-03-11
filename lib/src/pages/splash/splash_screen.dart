@@ -31,16 +31,18 @@ class _SplashScreenState extends State<SplashScreen> {
           end: Alignment.center,
           colors: deliveryGradients,
         )),
+        //color: Colors.yellow[100],
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'BIENVENIDOS',
+              'RESTAURANT',
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.displayMedium?.copyWith(
                     fontWeight: FontWeight.bold,
-                    color: Color(0xff00BFFF),
+                    //color: Color(0xff00BFFF),
+                    color: Color.fromARGB(235, 72, 184, 192),
                     fontSize: 40,
                   ),
             ),
@@ -50,29 +52,19 @@ class _SplashScreenState extends State<SplashScreen> {
               radius:
                   100, // Ajusta el radio del CircleAvatar según tus necesidades
               child: ClipOval(
-                  // child: Image.asset(
-                  //   'assets/crep.jpg', // Ruta de tu imagen cuadrada
-                  //   width: 2 *
-                  //       100, // El doble del radio del CircleAvatar para asegurarte de que se ajuste
-                  //   height: 2 *
-                  //       100, // El doble del radio del CircleAvatar para asegurarte de que se ajuste
-                  //   fit: BoxFit
-                  //       .cover, // Ajusta el modo de ajuste según tus necesidades
-                  // ),
-                  ),
+                child: Image.asset(
+                  'assets/img/Logo.jpg', // Ruta de tu imagen cuadrada
+                  width: 2 *
+                      100, // El doble del radio del CircleAvatar para asegurarte de que se ajuste
+                  height: 2 *
+                      100, // El doble del radio del CircleAvatar para asegurarte de que se ajuste
+                  fit: BoxFit
+                      .cover, // Ajusta el modo de ajuste según tus necesidades
+                ),
+              ),
             ),
             const SizedBox(
               height: 20,
-            ),
-            Text(
-              'QoriMarket',
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.yellow,
-                    //color: Color(0xffFFDAB9),
-                    fontSize: 40,
-                  ),
             ),
           ],
         ),

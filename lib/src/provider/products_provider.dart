@@ -60,7 +60,7 @@ class ProductsProvider extends GetConnect {
 
   Future<Stream> update(Product product, List<File> images) async {
     Uri uri = Uri.http(Enviroment.API_URL_OLD, '/api/products/update');
-    final request = http.MultipartRequest('PUT', uri);
+    final request = http.MultipartRequest('PATCH', uri);
     request.headers['Authorization'] = userSession.sessionToken ?? '';
 
     for (int i = 0; i < images.length; i++) {

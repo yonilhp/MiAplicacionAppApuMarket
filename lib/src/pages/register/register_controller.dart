@@ -18,8 +18,10 @@ class RegisterController extends GetxController {
   TextEditingController confirmPasswordController = TextEditingController();
 
   UsersProvider usersProvider = UsersProvider();
-
+  // aqui se crea una instancia de la clase ImagePicker que viene del paquete image_picker
   ImagePicker picker = ImagePicker();
+  // aqui se crea una instancia de la clase File que viene del paquete dart:io
+  //esto sirve para poder seleccionar una imagen
   File? imageFile;
 
   void register(BuildContext context) async {
@@ -32,7 +34,7 @@ class RegisterController extends GetxController {
 
     print('Email: $email');
     print('Password: $password');
-
+    // aqui se valida si el formulario de registro es valido
     if (isValidForm(email, name, lastname, phone, password, confirmPassword)) {
       ProgressDialog progressDialog = ProgressDialog(context: context);
       progressDialog.show(max: 100, msg: 'Cargando...');
@@ -42,7 +44,8 @@ class RegisterController extends GetxController {
           lastname: lastname,
           phone: phone,
           password: password);
-
+      //aqui se llama a la funcion createWithImage que se encuentra en el archivo users_provider.dart
+      //el imageFile es la imagen que se selecciono y ya está validado que no sea null
       Stream stream = await usersProvider.createWithImage(user, imageFile!);
       stream.listen((res) {
         progressDialog.close();

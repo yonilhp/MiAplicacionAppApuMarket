@@ -10,13 +10,16 @@ import 'package:apu_market/src/pages/register/register_page.dart';
 import 'package:apu_market/src/pages/restaurant/home/restaurant_home_page.dart';
 import 'package:apu_market/src/pages/restaurant/orders/list/restaurant_orders_list_page.dart';
 import 'package:apu_market/src/pages/roles/roles_page.dart';
+import 'package:apu_market/src/pages/splash/splash_screen.dart';
 // import 'package:apu_market/src/pages/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+// aqui se importa el paquete get_storage que se encarga de almacenar datos en el almacenamiento local
 User userSession = User.fromJson(GetStorage().read('user') ?? {});
 
+// aqui se inicializa el almacenamiento local
 void main() async {
   await GetStorage.init();
   runApp(const MyApp());
@@ -36,7 +39,7 @@ class DeliveryColors {
   static final white = Color(0xffFFFFFF);
   static final blue = Color(0xff0000FF);
   //celeste
-  static final lightBlue = Color(0xff00FFFF);
+  static final lightBlue = Color.fromARGB(235, 72, 184, 192);
   // celeste medio azulino
   static final mediumBlue = Color(0xff00BFFF);
   //verde claro opaco
@@ -45,10 +48,7 @@ class DeliveryColors {
   static final lightOrange = Color(0xffFFDAB9);
 }
 
-final deliveryGradients = [
-  DeliveryColors.lightBlue,
-  DeliveryColors.lightOrange
-];
+final deliveryGradients = [DeliveryColors.lightBlue, DeliveryColors.yellow];
 
 class _MyAppState extends State<MyApp> {
   @override
@@ -65,7 +65,7 @@ class _MyAppState extends State<MyApp> {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Apu Market',
-      // home: const SplashScreen(),
+      //home: const SplashScreen(),
       initialRoute: userSession.id != null
           ? userSession.roles!.length > 1
               ? '/roles'

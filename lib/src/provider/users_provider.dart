@@ -20,7 +20,7 @@ class UsersProvider extends GetConnect {
       headers: {
         'Content-Type': 'application/json',
       },
-    );
+    ); // Espera ahasta que el servidor nos retorne una respuesta
     return response;
   }
   //Sin imagen
@@ -73,6 +73,7 @@ class UsersProvider extends GetConnect {
     return response.stream.transform(utf8.decoder);
   }
 
+  // aqui se hace el login
   Future<ResponseApi> login(String email, String password) async {
     Response response = await post(
       '$url/login',

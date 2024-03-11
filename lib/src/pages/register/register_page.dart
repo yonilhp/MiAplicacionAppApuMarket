@@ -206,6 +206,8 @@ class RegisterPage extends StatelessWidget {
           alignment: Alignment.topCenter,
           child: GestureDetector(
               onTap: () => con.showAlertDialog(context),
+              //aqui el GetBuilder se usa para actualizar la imagen automaticamente
+              //donde getBuilder viene del paquete GetX
               child: GetBuilder<RegisterController>(
                 builder: (value) => CircleAvatar(
                   backgroundImage: con.imageFile != null

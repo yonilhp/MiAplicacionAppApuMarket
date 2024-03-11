@@ -1,5 +1,8 @@
 import 'dart:convert';
 
+//  esta clase ResponseApi proporciona una estructura para manejar respuestas
+// de API, incluyendo información sobre el éxito o fracaso de la solicitud,
+//mensajes asociados y datos devueltos.
 ResponseApi responseApiFromJson(String str) =>
     ResponseApi.fromJson(json.decode(str));
 

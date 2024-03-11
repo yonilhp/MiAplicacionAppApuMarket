@@ -2,6 +2,7 @@ import 'package:apu_market/src/pages/client/home/client_home_controller.dart';
 import 'package:apu_market/src/pages/client/products/list/client_products_list_page.dart';
 import 'package:apu_market/src/pages/client/profile/info/client_profile_info_page.dart';
 import 'package:apu_market/src/pages/delivery/orders/list/delivery_orders_list_page.dart';
+import 'package:apu_market/src/pages/roles/roles_page.dart';
 import 'package:apu_market/src/utils/custom_animated_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,6 +13,23 @@ class ClientHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: con.myUser.roles!.length > 1
+            ? AppBar(
+                title: Text(
+                  'Productos',
+                  //centrar texto
+                  style: TextStyle(color: Colors.white),
+                ),
+                leading: IconButton(
+                  icon: Icon(
+                    Icons.arrow_back,
+                    color: Colors.black,
+                  ),
+                  onPressed: () {
+                    Get.offAll(() => RolesPage());
+                  },
+                ))
+            : null,
         bottomNavigationBar: _bottomBar(),
         body: Obx(() => IndexedStack(
               index: con.indexTab.value,
