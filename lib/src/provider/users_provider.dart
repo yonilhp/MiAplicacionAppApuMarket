@@ -51,7 +51,7 @@ class UsersProvider extends GetConnect {
 
   /*Para almacenar imagenes grandes */
   Future<Stream> createWithImage(User user, File image) async {
-    Uri uri = Uri.http(Enviroment.API_URL_OLD, '/api/users/createWithImage');
+    Uri uri = Uri.https(Enviroment.API_URL_OLD, '/api/users/createWithImage');
     final request = http.MultipartRequest('POST', uri);
     request.files.add(http.MultipartFile(
         'image', http.ByteStream(image.openRead().cast()), await image.length(),
@@ -62,7 +62,7 @@ class UsersProvider extends GetConnect {
   }
 
   Future<Stream> updateWithImage(User user, File image) async {
-    Uri uri = Uri.http(Enviroment.API_URL_OLD, '/api/users/update');
+    Uri uri = Uri.https(Enviroment.API_URL_OLD, '/api/users/update');
     final request = http.MultipartRequest('PUT', uri);
     request.headers['Authorization'] = userSession.sessionToken ?? '';
     request.files.add(http.MultipartFile(

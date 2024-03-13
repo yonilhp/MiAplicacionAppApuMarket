@@ -41,7 +41,7 @@ class ProductsProvider extends GetConnect {
   }
 
   Future<Stream> create(Product product, List<File> images) async {
-    Uri uri = Uri.http(Enviroment.API_URL_OLD, '/api/products/create');
+    Uri uri = Uri.https(Enviroment.API_URL_OLD, '/api/products/create');
     final request = http.MultipartRequest('POST', uri);
     request.headers['Authorization'] = userSession.sessionToken ?? '';
 
@@ -59,7 +59,7 @@ class ProductsProvider extends GetConnect {
   }
 
   Future<Stream> update(Product product, List<File> images) async {
-    Uri uri = Uri.http(Enviroment.API_URL_OLD, '/api/products/update');
+    Uri uri = Uri.https(Enviroment.API_URL_OLD, '/api/products/update');
     final request = http.MultipartRequest('PATCH', uri);
     request.headers['Authorization'] = userSession.sessionToken ?? '';
 
