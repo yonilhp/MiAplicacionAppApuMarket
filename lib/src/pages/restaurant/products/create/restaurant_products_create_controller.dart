@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:apu_market/src/models/product.dart';
 import 'package:apu_market/src/models/response_api.dart';
+import 'package:apu_market/src/pages/restaurant/home/restaurant_home_page.dart';
 import 'package:apu_market/src/pages/restaurant/products/home/restaurant_products_home_page.dart';
 import 'package:apu_market/src/provider/categories_provider.dart';
 import 'package:apu_market/src/models/category.dart';
@@ -71,7 +72,8 @@ class RestaurantProductsCreateController extends GetxController {
         print(responseApi);
         if (responseApi.success == true) {
           clearForm();
-          Get.off(() => RestaurantProductsHomePage());
+          update();
+          Get.offAll(() => RestaurantHomePage());
         }
       });
     }

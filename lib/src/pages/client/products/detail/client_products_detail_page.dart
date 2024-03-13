@@ -148,7 +148,7 @@ class ClientProductsDetailPage extends StatelessWidget {
       alignment: Alignment.centerLeft,
       margin: EdgeInsets.only(left: 30, top: 15, right: 30),
       child: Text(
-        '\$ ${product?.price.toString() ?? ''}',
+        '\S/  ${product?.price.toString() ?? ''}',
         style: TextStyle(
             fontSize: 15, fontWeight: FontWeight.bold, color: Colors.black),
       ),

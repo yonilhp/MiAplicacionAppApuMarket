@@ -44,6 +44,7 @@ dependencies:
   flutter_svg: ^2.0.10+1
   modal_bottom_sheet: ^3.0.0-pre
   flutter_image_slideshow: ^0.1.6
+  eva_icons_flutter: ^3.1.0
 
 dev_dependencies:
   flutter_test:

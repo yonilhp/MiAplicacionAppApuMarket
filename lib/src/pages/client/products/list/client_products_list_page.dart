@@ -85,7 +85,7 @@ class ClientProductsListPage extends StatelessWidget {
                   SizedBox(
                     height: 10,
                   ),
-                  Text('\$${product.price.toString()}',
+                  Text('\S/ ${product.price.toString()}',
                       style: TextStyle(
                           color: Colors.black54, fontWeight: FontWeight.bold)),
                   SizedBox(

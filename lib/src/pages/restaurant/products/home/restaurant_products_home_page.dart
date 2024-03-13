@@ -104,7 +104,7 @@ class RestaurantProductsHomePage extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      Text('\$${product.price.toString()}',
+                      Text('\S/ ${product.price.toString()}',
                           style: TextStyle(
                               color: Colors.black54,
                               fontWeight: FontWeight.bold)),

@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:apu_market/src/models/category.dart';
 import 'package:apu_market/src/pages/restaurant/products/create/restaurant_products_create_controller.dart';
 import 'package:apu_market/src/pages/restaurant/products/home/restaurant_products_home_page.dart';
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -171,7 +172,23 @@ class RestaurantProductsCreatePage extends StatelessWidget {
         controller: con.priceController,
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
-            hintText: 'Precio', prefixIcon: Icon(FontAwesomeIcons.dollarSign)),
+          hintText: 'Precio',
+          prefixIcon: Padding(
+            padding: EdgeInsets.all(10),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  'S/',
+                  style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -224,7 +241,7 @@ class RestaurantProductsCreatePage extends StatelessWidget {
         margin: EdgeInsets.only(top: 40, bottom: 30),
         child: Text(
           'INGRESE ESTA INFORMACION',
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         ));
   }
 

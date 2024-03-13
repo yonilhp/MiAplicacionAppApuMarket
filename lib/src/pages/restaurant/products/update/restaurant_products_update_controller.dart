@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:apu_market/src/pages/restaurant/home/restaurant_home_page.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart' as http;
 import 'package:apu_market/src/models/product.dart';
@@ -98,7 +99,7 @@ class RestaurantProductsUpdateController extends GetxController {
         Get.snackbar('Proceso terminado', responseApi.message ?? '');
         print(responseApi);
         if (responseApi.success == true) {
-          Get.off(() => RestaurantProductsHomePage());
+          Get.off(() => RestaurantHomePage());
         }
       });
     }
